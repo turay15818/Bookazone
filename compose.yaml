@@ -1,0 +1,7 @@
+﻿services:
+  bookazone:
+    image: bookazone
+    build:
+      context: .
+      dockerfile: Bookazone/Dockerfile
+
