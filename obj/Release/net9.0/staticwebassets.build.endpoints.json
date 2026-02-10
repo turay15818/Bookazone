@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "ManifestType": "Build",
+  "Endpoints": [
+    {
+      "Route": "AppFiles/logo.jpg",
+      "AssetFile": "AppFiles/logo.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33619"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 27 Jan 2026 10:17:36 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0="
+        }
+      ]
+    },
+    {
+      "Route": "AppFiles/logo.wpkveixq1u.jpg",
+      "AssetFile": "AppFiles/logo.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33619"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 27 Jan 2026 10:17:36 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wpkveixq1u"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0="
+        },
+        {
+          "Name": "label",
+          "Value": "AppFiles/logo.jpg"
+        }
+      ]
+    }
+  ]
+}

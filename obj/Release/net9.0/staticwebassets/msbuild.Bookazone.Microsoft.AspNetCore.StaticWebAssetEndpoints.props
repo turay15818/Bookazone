@@ -1,0 +1,16 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/Bookazone/AppFiles/logo.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\AppFiles\logo.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"33619"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0=\u0022"},{"Name":"Last-Modified","Value":"Tue, 27 Jan 2026 10:17:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Bookazone/AppFiles/logo.wpkveixq1u.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\AppFiles\logo.jpg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wpkveixq1u"},{"Name":"integrity","Value":"sha256-pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0="},{"Name":"label","Value":"_content/Bookazone/AppFiles/logo.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"33619"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0=\u0022"},{"Name":"Last-Modified","Value":"Tue, 27 Jan 2026 10:17:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

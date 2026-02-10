@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "Hash": "/XKLNAcjgFzC8uVcqzGnUBdSedmo6WS1F+cn++JmjkU=",
+  "Source": "Bookazone",
+  "BasePath": "_content/Bookazone",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Bookazone\\wwwroot",
+      "Source": "Bookazone",
+      "ContentRoot": "D:\\GTBSL_Workspace\\FinacleDbMigration\\Bookazone\\wwwroot\\",
+      "BasePath": "_content/Bookazone",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\GTBSL_Workspace\\FinacleDbMigration\\Bookazone\\wwwroot\\AppFiles\\logo.jpg",
+      "SourceId": "Bookazone",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GTBSL_Workspace\\FinacleDbMigration\\Bookazone\\wwwroot\\",
+      "BasePath": "_content/Bookazone",
+      "RelativePath": "AppFiles/logo#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wpkveixq1u",
+      "Integrity": "pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\AppFiles\\logo.jpg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "AppFiles/logo.jpg",
+      "AssetFile": "D:\\GTBSL_Workspace\\FinacleDbMigration\\Bookazone\\wwwroot\\AppFiles\\logo.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33619"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 27 Jan 2026 10:17:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0="
+        }
+      ]
+    },
+    {
+      "Route": "AppFiles/logo.wpkveixq1u.jpg",
+      "AssetFile": "D:\\GTBSL_Workspace\\FinacleDbMigration\\Bookazone\\wwwroot\\AppFiles\\logo.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33619"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 27 Jan 2026 10:17:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wpkveixq1u"
+        },
+        {
+          "Name": "label",
+          "Value": "AppFiles/logo.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pGCJbx/tAeZCZEB9hukHX0vehMCoRBZ1d/tIQMz6bR0="
+        }
+      ]
+    }
+  ]
+}

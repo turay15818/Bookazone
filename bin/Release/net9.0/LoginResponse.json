@@ -1,0 +1,59 @@
+{
+  "data": {
+    "tenant": {
+      "id": "bf0c1bf5-0d04-43fc-a485-629e937103cb",
+      "name": "TURAYMATHIC",
+      "subdomain": "musaturay",
+      "logo": "https://storage.googleapis.com/Bookazone-513cb.firebasestorage.app/test-Logo/1b677e2a-9db7-4e5b-be4c-6a6563608495_IMG-20251011-WA0002.jpg"
+    },
+    "user": {
+      "id": "c056560f-2012-450f-91ec-6076b2ee9fd8",
+      "email": "turaymusaa@gmail.com",
+      "firstname": "Moussa",
+      "lastname": "Toure",
+      "address": null,
+      "lastAuthenticated": "2025-10-23T21:59:07.283162Z",
+      "roles": [],
+      "permissions": [
+        "USER_CREATE",
+        "USER_VIEW",
+        "USER_UPDATE",
+        "USER_INVITE"
+      ]
+    },
+    "device": {
+      "id": "ccb0e24c-447c-46e3-98f2-9e10a418554c",
+      "identifier": "string",
+      "verified": true
+    },
+    "auth": {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ",
+      "expires_in": 3598,
+      "refresh_token": "Quoc6eQRmVsBqDSYr2uCv7Dxhnu+Ch7hhAHZEth/ukfV5LP4lEIhLYsbGxpnBhwZhDNpqiTu/ayRS7bSNRDuKQ==",
+      "refresh_expires_in": 1209599.320444,
+      "session_id": "96e9962c-6cfa-4163-9d4d-b27d56c179e4"
+    }
+  },
+  "pages": null,
+  "pageIndex": null,
+  "status": 1,
+  "message": "success"
+}
+
+
+
+{
+  "data": {
+    "access_token": "e.4gSxsAra5VX217z61grkCGWGJHClIPJRBFAaTCElnSo",
+    "expires_in": 3599,
+    "refresh_token": "koZttstctefoo17UvA07rMPxs9YVyMYva3x6JPV8cmgw1pevEIWFXVUvun1u+SoQbwETqN1MjkCbVyioNYF/AQ==",
+    "refresh_expires_in": 1209599.726099
+  },
+  "pages": null,
+  "pageIndex": null,
+  "status": 1,
+  "message": "success"
+}
+
+
+
