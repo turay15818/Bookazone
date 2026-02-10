@@ -1,0 +1,116 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.OpenApi.Models;
+using SkillConnectSL.Domain.Core.Data.Object.Dto;
+using SkillConnectSL.Domain.Core.Hubs;
+using SkillConnectSL.Domain.Core.Infrastructure.Database;
+using SkillConnectSL.Domain.Core.Infrastructure.Injector;
+using SkillConnectSL.Domain.Core.Provider.JWT;
+using SkillConnectSL.Domain.Core.Service;
+using SkillConnectSL.Domain.Utils;
+using SkillConnectSL.Middleware;
+using Swashbuckle.AspNetCore.SwaggerGen;
+
+var builder = WebApplication.CreateBuilder(args);
+IdentityModelEventSource.ShowPII = true;
+builder.Services.AddDbContext<ScslDbContext>(options => options.UseMySql(ScslCrypto.ScSlDecrypt(builder.Configuration.GetConnectionString("SkillConnectSl")), new MySqlServerVersion(new Version(9, 0, 32))
+    )
+);
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+
+
+builder.Services.AddTransient<DbContext, ScslDbContext>();
+builder.Services.AddScoped<Functions>();
+
+builder.Services.RegisterDependenciesSkillConnectSl();
+builder.Services.AddControllers();
+
+builder.Services.AddScoped<FirebaseNotificationService>();
+builder.Services.AddScoped<FirebaseStorageService>();
+builder.Services.AddScoped<IDocumentProcessingService, DocumentProcessingService>();
+
+
+
+
+builder.Services.AddScoped<ILogger<Functions>>(provider => provider.GetRequiredService<ILoggerFactory>().CreateLogger<Functions>());
+
+
+
+
+builder.Services.AddOpenApi();
+
+
+// REPLACE your existing CORS configuration with this enhanced version
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        policy => policy
+            .SetIsOriginAllowed(_ => true) // Allow any origin in development
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()
+    );
+});
+builder.Services.AddSignalR();
+builder.Services.AddSwaggerGen(d =>
+{
+    SwaggerConfig.SwaggerDocs.ForEach(docs =>
+    {
+        d.SwaggerDoc(docs.Slug, new OpenApiInfo
+        {
+            Title = docs.Title,
+            Version = docs.Version,
+            Description = docs.Description,
+            Contact = new OpenApiContact { Name = docs.Name }
+        });
+    });
+});
+builder.Services.Configure<SwaggerGeneratorOptions>(options => { options.InferSecuritySchemes = true; });
+builder.Services.AddAuthorization(auth =>
+{
+    auth.AddPolicy(JwtBearerDefaults.AuthenticationScheme, new AuthorizationPolicyBuilder()
+        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+        .RequireAuthenticatedUser().Build());
+});
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+builder.Services.ConfigureOptions<JwtOptionsSetup>();
+builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
+builder.Services.AddMvc().AddJsonOptions(opt => { opt.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles; });
+var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+
+}
+
+app.UseExceptionHandleMiddleware();
+app.UseMiddleware<UserGuardMiddleware>();
+app.UseStaticFiles();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    SwaggerConfig.SwaggerDocs.ForEach(docs =>
+    {
+        c.SwaggerEndpoint($"/swagger/{docs.Slug}/swagger.json", docs.Slug);
+    });
+});
+
+
+
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+app.UseHttpsRedirection();
+app.UseAuthentication();
+/*app.UseMiddleware<DeviceValidationMiddleware>();*/
+app.UseRouting();
+app.UseAuthorization();
+// Add this AFTER app.UseAuthorization() and BEFORE app.MapControllers()
+app.MapHub<ChatHub>("/chathub");
+app.MapControllers();
+app.Run();

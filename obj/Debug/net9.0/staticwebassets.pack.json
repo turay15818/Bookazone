@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\GTBSL_Workspace\\FinacleDbMigration\\Bookazone\\wwwroot\\AppFiles\\logo.jpg",
+      "PackagePath": "staticwebassets\\AppFiles\\logo.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Bookazone.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Bookazone.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.Bookazone.props",
+      "PackagePath": "build\\Bookazone.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.Bookazone.props",
+      "PackagePath": "buildMultiTargeting\\Bookazone.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.Bookazone.props",
+      "PackagePath": "buildTransitive\\Bookazone.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

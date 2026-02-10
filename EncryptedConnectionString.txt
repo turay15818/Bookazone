@@ -1,0 +1,68 @@
+JEEVDmDw3uqaed9mJ3GBBZM2Oh1ya81SRy50k9vMQZrlwdwD63QxanEIifTWkI/AAoU8/5jNTbThqT12ska6rNsva1xt55MuFP7CosWgHa2wqWX8Aq9Z6HJHwFobsPkdzOn1eFu1UXUTTUp9Zg==
+
+
+
+before sale Samsung Galaxy A31 4G was 758760 and sold 5 Unit and it should be 758755 after sale
+before sale Samsung Galaxy S21 was 345670 and sold 3 Unit and it should be 345667 after sale
+before sale SSSS Phone was 6745 and we sold 7 Unit and it should be 6738 after sale
+
+now we want to some exchange 
+
+We will take 9 Samsung Edge it currently have 69837 and we are taking 9 unit so it should be 69828 after exchange
+Samsung Note 5 currently have 4564 and we are taking and we are taking 29 unit so it should be 4535 after exchange
+Big Joe currently have 234551 and we are taking 17 unit so it should be 234534 after exchange
+DDDD currently have 158474 and we are taking 13 unit so it should be 158461 after exchange
+GGGG currently have 345780 and we are taking 6 unit so it should be 345774 after exchange
+
+
+
+{
+  "tenantName": "TURAYMATHIC",
+  "shopName": "SHOP B",
+  "receiptNumber": "TM-POS-20260105-181522-6267",
+  "issuedAt": "2026-01-05T18:15:24.714766Z",
+  "subTotal": 48786.94,
+  "discountTotal": 0,
+  "grandTotal": 48771.98,
+  "taxTotal": 6363.51,
+  "promotionTotal": 6652.77,
+  "orderNumber": "TM-POS-20260105-181522-6267",
+  "originalTotal": 14.96,
+  "returnedTotal": 14.96,
+  "exchangeTotal": 48786.94,
+  "paidAmount": 0.98,
+  "refundedAmount": 0,
+  "netPayable": 48771.98,
+  "balance": 48771,
+  "isFinal": false,
+  "lines": [
+    {
+      "productName": "AAA",
+      "quantity": 1,
+      "lineTotal": 14.96,
+      "unitPrice": 17,
+      "lineType": "Sale"
+    },
+    {
+      "productName": "AAA",
+      "quantity": -1,
+      "lineTotal": -14.96,
+      "unitPrice": 17,
+      "lineType": "Return"
+    },
+    {
+      "productName": "Samsung Note 5",
+      "quantity": 29,
+      "lineTotal": 39810.94,
+      "unitPrice": 1559.99,
+      "lineType": "Exchange"
+    },
+    {
+      "productName": "Big Joe",
+      "quantity": 17,
+      "lineTotal": 8976,
+      "unitPrice": 600,
+      "lineType": "Exchange"
+    }
+  ]
+}

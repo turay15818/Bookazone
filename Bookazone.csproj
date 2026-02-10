@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+        <PackageReference Include="DinkToPdf" Version="1.0.8" />
+        <PackageReference Include="FirebaseAdmin" Version="3.4.0" />
+        <PackageReference Include="Google.Apis.Auth" Version="1.72.0" />
+        <PackageReference Include="Google.Cloud.Storage.V1" Version="4.13.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+        <PackageReference Include="PDFGenerator" Version="1.3.0" />
+        <PackageReference Include="QRCoder" Version="1.7.0" />
+        <PackageReference Include="QuestPDF" Version="2025.12.1" />
+        <PackageReference Include="RazorLight" Version="2.3.1" />
+        <PackageReference Include="Scriban" Version="6.5.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Src\" />
+      <Folder Include="src\Api\Controllers\V1\Public\" />
+      <Folder Include="src\Api\Controllers\V1\Secure\Others\" />
+      <Folder Include="src\Application\Common\Shared\Receipt\" />
+      <Folder Include="src\Application\DTOs\Converter\Inventory\BusinessIntegration\" />
+      <Folder Include="src\Application\DTOs\Converter\Inventory\movement\" />
+      <Folder Include="src\Application\DTOs\Converter\Inventory\Product\" />
+      <Folder Include="src\Application\DTOs\Converter\Inventory\StockCount\" />
+      <Folder Include="src\Application\DTOs\Converter\Inventory\StockSnapshot\" />
+      <Folder Include="src\Application\DTOs\Converter\Inventory\Warehouse\" />
+      <Folder Include="src\Application\DTOs\Request\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="postman\collections\StockPilot API.postman_collection.json" />
+      <_ContentIncludedByDefault Remove="postman\globals\workspace.postman_globals.json" />
+    </ItemGroup>
+
+</Project>

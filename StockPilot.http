@@ -1,0 +1,6 @@
+@Bookazone_HostAddress = http://localhost:5287
+
+GET {{Bookazone_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,52 @@
+using System.Security.Cryptography;
+using System.Text;
+using Microsoft.Extensions.Logging;
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Enable logging to see output
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+builder.Services.AddControllers();
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+// One-time secret to encrypt (your raw connection string)
+string rawConnectionString = "Host=31.97.178.68;Database=Bookazone;Username=pcsolution;Password=KojoWest@2025?";
+
+// 1️⃣ Generate a new AES-256 key
+var keyBytes = new byte[32];
+RandomNumberGenerator.Fill(keyBytes);
+var base64Key = Convert.ToBase64String(keyBytes);
+
+// 2️⃣ Create CryptoService and encrypt
+var crypto = new CryptoService(base64Key);
+var encrypted = crypto.Encrypt(rawConnectionString);
+
+// 3️⃣ Decrypt to verify it works
+var decrypted = crypto.Decrypt(encrypted);
+
+// 4️⃣ Save encrypted connection string and key to disk
+File.WriteAllText("EncryptedConnectionString.txt", encrypted);
+File.WriteAllText("EncryptionKey.txt", base64Key);
+
+// 5️⃣ Log result to console
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+logger.LogInformation("🔐 One-time Encryption Done");
+logger.LogInformation("Encrypted Connection String: {Encrypted}", encrypted);
+logger.LogInformation("Encryption Key (base64): {Key}", base64Key);
+logger.LogInformation("✅ Decrypted (for validation): {Decrypted}", decrypted);
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();
