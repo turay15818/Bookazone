@@ -335,6 +335,546 @@ namespace Bookazone.Migrations
                     b.ToTable("TenantBookingCategories", "booking");
                 });
 
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.Equipment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<int?>("BookingDurationUnit")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BookingMode")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Category")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Currency")
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool?>("DeliveryAvailable")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(5000)
+                        .HasColumnType("character varying(5000)");
+
+                    b.Property<Guid?>("FkCoverMediaId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FkTenantId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<double?>("Latitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Longitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<int?>("MaxBookingDuration")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("MinBookingDuration")
+                        .HasColumnType("integer");
+
+                    b.Property<bool?>("PickupAvailable")
+                        .HasColumnType("boolean");
+
+                    b.Property<decimal?>("PriceFrom")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Subtitle")
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<int>("UnitsAvailable")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Category");
+
+                    b.HasIndex("City");
+
+                    b.HasIndex("FkCoverMediaId");
+
+                    b.HasIndex("FkTenantId");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("Equipment", "equipment");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentMedia", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkEquipmentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FkStoredFileId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsCover")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkStoredFileId");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("FkEquipmentId", "SortOrder");
+
+                    b.ToTable("EquipmentMedia", "equipment");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentOrder", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("ContactEmail")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("ContactName")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<string>("ContactPhone")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("DeliveryAddress")
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<double?>("DeliveryLatitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("DeliveryLongitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime?>("EndUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("FkCustomerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FkEquipmentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FkTenantId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<int>("PricingUnit")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime?>("StartUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("UnitsRequested")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkCustomerId");
+
+                    b.HasIndex("FkEquipmentId");
+
+                    b.HasIndex("FkTenantId");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("EquipmentOrders", "equipment");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentPolicy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Body")
+                        .HasMaxLength(4000)
+                        .HasColumnType("character varying(4000)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkEquipmentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("FkEquipmentId", "SortOrder");
+
+                    b.ToTable("EquipmentPolicies", "equipment");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentPricingRule", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkEquipmentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsPrimary")
+                        .HasColumnType("boolean");
+
+                    b.Property<decimal?>("MaxQuantity")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal?>("MinQuantity")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("PriceAmount")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("Unit")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkEquipmentId");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("FkEquipmentId", "Unit");
+
+                    b.ToTable("EquipmentPricingRules", "equipment");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentSpec", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkEquipmentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("FkEquipmentId", "SortOrder");
+
+                    b.ToTable("EquipmentSpecs", "equipment");
+                });
+
             modelBuilder.Entity("Bookazone.Domain.Entities.Events.Event", b =>
                 {
                     b.Property<Guid>("Id")
@@ -2438,6 +2978,755 @@ namespace Bookazone.Migrations
                     b.ToTable("Users", "profile");
                 });
 
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.Rental", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<int?>("Bathrooms")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Bedrooms")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("BookingDurationUnit")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BookingMode")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Capacity")
+                        .HasColumnType("integer");
+
+                    b.Property<TimeSpan?>("CheckInTime")
+                        .HasColumnType("interval");
+
+                    b.Property<TimeSpan?>("CheckOutTime")
+                        .HasColumnType("interval");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Currency")
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(5000)
+                        .HasColumnType("character varying(5000)");
+
+                    b.Property<Guid?>("FkCoverMediaId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FkTenantId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal?>("FloorAreaSquareMeters")
+                        .HasColumnType("numeric");
+
+                    b.Property<bool?>("HasAirConditioning")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("HasFan")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("HasParking")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("HasSoundSystem")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("HasToilet")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("HasWifi")
+                        .HasColumnType("boolean");
+
+                    b.Property<double?>("Latitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Longitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<int?>("MaxBookingDuration")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("MinBookingDuration")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal?>("PriceFrom")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Subtitle")
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UnitsAvailable")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("City");
+
+                    b.HasIndex("FkCoverMediaId");
+
+                    b.HasIndex("FkTenantId");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("Status", "Type");
+
+                    b.ToTable("Rentals", "rentals");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalMedia", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkRentalId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FkStoredFileId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsCover")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkStoredFileId");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("FkRentalId", "SortOrder");
+
+                    b.ToTable("RentalMedia", "rentals");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalOrder", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("ContactEmail")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("ContactName")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<string>("ContactPhone")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<DateTime?>("EndUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("FkCustomerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FkRentalId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FkTenantId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int?>("GuestCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<int>("PricingUnit")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime?>("StartUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("UnitsRequested")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkCustomerId");
+
+                    b.HasIndex("FkRentalId");
+
+                    b.HasIndex("FkTenantId");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("RentalOrders", "rentals");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalPolicy", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Body")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkRentalId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("FkRentalId", "SortOrder");
+
+                    b.ToTable("RentalPolicies", "rentals");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalPricingRule", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkRentalId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsPrimary")
+                        .HasColumnType("boolean");
+
+                    b.Property<decimal?>("MaxQuantity")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal?>("MinQuantity")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("PriceAmount")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("Unit")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkRentalId");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("FkRentalId", "Unit");
+
+                    b.ToTable("RentalPricingRules", "rentals");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalSpec", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkRentalId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("FkRentalId", "SortOrder");
+
+                    b.ToTable("RentalSpecs", "rentals");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Reviews.Review", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Body")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkCustomerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("FkTenantId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("FkUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsVerified")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("ModerationNotes")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("RepliedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Reply")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<Guid?>("ReplyByUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("SourceId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("SourceType")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1);
+
+                    b.Property<Guid>("TargetId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("TargetType")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkCustomerId");
+
+                    b.HasIndex("FkTenantId");
+
+                    b.HasIndex("FkUserId");
+
+                    b.HasIndex("ReplyByUserId");
+
+                    b.HasIndex("SourceType", "SourceId")
+                        .IsUnique();
+
+                    b.HasIndex("Status", "TargetType");
+
+                    b.HasIndex("TargetType", "TargetId");
+
+                    b.ToTable("Reviews", "reviews", t =>
+                        {
+                            t.HasCheckConstraint("CK_Reviews_Rating", "\"Rating\" >= 1 AND \"Rating\" <= 5");
+                        });
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Reviews.ReviewAspectRating", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeletedReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<Guid>("FkReviewId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkReviewId");
+
+                    b.HasIndex("FkReviewId", "SortOrder");
+
+                    b.ToTable("ReviewAspectRatings", "reviews", t =>
+                        {
+                            t.HasCheckConstraint("CK_ReviewAspectRatings_Score", "\"Score\" >= 1 AND \"Score\" <= 5");
+                        });
+                });
+
             modelBuilder.Entity("Bookazone.Domain.Entities.Sports.SportResource", b =>
                 {
                     b.Property<Guid>("Id")
@@ -4212,6 +5501,139 @@ namespace Bookazone.Migrations
                     b.Navigation("FkUser");
                 });
 
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.Equipment", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Equipment.EquipmentMedia", "FkCoverMedia")
+                        .WithMany()
+                        .HasForeignKey("FkCoverMediaId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Bookazone.Domain.Entities.Tenant.Tenants", "FkTenant")
+                        .WithMany()
+                        .HasForeignKey("FkTenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkCoverMedia");
+
+                    b.Navigation("FkTenant");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentMedia", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Equipment.Equipment", "FkEquipment")
+                        .WithMany()
+                        .HasForeignKey("FkEquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Others.StoredFile", "FkStoredFile")
+                        .WithMany()
+                        .HasForeignKey("FkStoredFileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkEquipment");
+
+                    b.Navigation("FkStoredFile");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentOrder", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkCustomer")
+                        .WithMany()
+                        .HasForeignKey("FkCustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Equipment.Equipment", "FkEquipment")
+                        .WithMany()
+                        .HasForeignKey("FkEquipmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Tenant.Tenants", "FkTenant")
+                        .WithMany()
+                        .HasForeignKey("FkTenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkCustomer");
+
+                    b.Navigation("FkEquipment");
+
+                    b.Navigation("FkTenant");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentPolicy", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Equipment.Equipment", "FkEquipment")
+                        .WithMany()
+                        .HasForeignKey("FkEquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkEquipment");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentPricingRule", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Equipment.Equipment", "FkEquipment")
+                        .WithMany()
+                        .HasForeignKey("FkEquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkEquipment");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Equipment.EquipmentSpec", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Equipment.Equipment", "FkEquipment")
+                        .WithMany()
+                        .HasForeignKey("FkEquipmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkEquipment");
+
+                    b.Navigation("FkUser");
+                });
+
             modelBuilder.Entity("Bookazone.Domain.Entities.Events.Event", b =>
                 {
                     b.HasOne("Bookazone.Domain.Entities.Events.EventMedia", "FkCoverMedia")
@@ -4614,6 +6036,182 @@ namespace Bookazone.Migrations
                     b.HasOne("Bookazone.Domain.Entities.Tenant.Tenants", null)
                         .WithMany("Users")
                         .HasForeignKey("TenantsId");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.Rental", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Rentals.RentalMedia", "FkCoverMedia")
+                        .WithMany()
+                        .HasForeignKey("FkCoverMediaId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Bookazone.Domain.Entities.Tenant.Tenants", "FkTenant")
+                        .WithMany()
+                        .HasForeignKey("FkTenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkCoverMedia");
+
+                    b.Navigation("FkTenant");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalMedia", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Rentals.Rental", "FkRental")
+                        .WithMany()
+                        .HasForeignKey("FkRentalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Others.StoredFile", "FkStoredFile")
+                        .WithMany()
+                        .HasForeignKey("FkStoredFileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkRental");
+
+                    b.Navigation("FkStoredFile");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalOrder", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkCustomer")
+                        .WithMany()
+                        .HasForeignKey("FkCustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Rentals.Rental", "FkRental")
+                        .WithMany()
+                        .HasForeignKey("FkRentalId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Tenant.Tenants", "FkTenant")
+                        .WithMany()
+                        .HasForeignKey("FkTenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkCustomer");
+
+                    b.Navigation("FkRental");
+
+                    b.Navigation("FkTenant");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalPolicy", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Rentals.Rental", "FkRental")
+                        .WithMany()
+                        .HasForeignKey("FkRentalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkRental");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalPricingRule", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Rentals.Rental", "FkRental")
+                        .WithMany()
+                        .HasForeignKey("FkRentalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkRental");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Rentals.RentalSpec", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Rentals.Rental", "FkRental")
+                        .WithMany()
+                        .HasForeignKey("FkRentalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.Navigation("FkRental");
+
+                    b.Navigation("FkUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Reviews.Review", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkCustomer")
+                        .WithMany()
+                        .HasForeignKey("FkCustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Tenant.Tenants", "FkTenant")
+                        .WithMany()
+                        .HasForeignKey("FkTenantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "FkUser")
+                        .WithMany()
+                        .HasForeignKey("FkUserId");
+
+                    b.HasOne("Bookazone.Domain.Entities.Profile.Users", "ReplyByUser")
+                        .WithMany()
+                        .HasForeignKey("ReplyByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("FkCustomer");
+
+                    b.Navigation("FkTenant");
+
+                    b.Navigation("FkUser");
+
+                    b.Navigation("ReplyByUser");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Reviews.ReviewAspectRating", b =>
+                {
+                    b.HasOne("Bookazone.Domain.Entities.Reviews.Review", "FkReview")
+                        .WithMany("AspectRatings")
+                        .HasForeignKey("FkReviewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FkReview");
                 });
 
             modelBuilder.Entity("Bookazone.Domain.Entities.Sports.SportResource", b =>
@@ -5033,6 +6631,11 @@ namespace Bookazone.Migrations
                     b.Navigation("UserPermissions");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Bookazone.Domain.Entities.Reviews.Review", b =>
+                {
+                    b.Navigation("AspectRatings");
                 });
 
             modelBuilder.Entity("Bookazone.Domain.Entities.Subscription.SubscriptionPlan", b =>

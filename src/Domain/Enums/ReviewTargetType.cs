@@ -5,5 +5,6 @@ public enum ReviewTargetType
     Tenant = 0,
     SportResource = 1,
     Event = 2,
-    Vehicle = 3
+    Vehicle = 3,
+    Rental = 4
 }

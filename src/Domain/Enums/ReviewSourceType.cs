@@ -4,5 +4,6 @@ public enum ReviewSourceType
 {
     Booking = 0,
     EventOrder = 1,
-    VehicleOrder = 2
+    VehicleOrder = 2,
+    RentalOrder = 3
 }

@@ -18,7 +18,7 @@ public class ReviewConfiguration : IEntityTypeConfiguration<Review>
         builder.Property(e => e.ModerationNotes).HasMaxLength(500);
         builder.Property(e => e.Reply).HasMaxLength(2000);
         builder.Property(e => e.IsVerified).HasDefaultValue(true);
-        builder.Property(e => e.Status).HasDefaultValue(ReviewStatus.Pending);
+        builder.Property(e => e.Status).HasDefaultValue(ReviewStatus.Approved);
 
         builder.HasOne(e => e.FkTenant)
             .WithMany()

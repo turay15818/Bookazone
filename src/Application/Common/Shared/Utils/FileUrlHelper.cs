@@ -6,11 +6,8 @@ public static class FileUrlHelper
 {
     public static string? BuildPublicUrl(HttpRequest? request, string? path, string? baseUrlOverride = null)
     {
-        if (string.IsNullOrWhiteSpace(path))
-            return null;
-
-        if (Uri.TryCreate(path, UriKind.Absolute, out _))
-            return path;
+        if (string.IsNullOrWhiteSpace(path)) return null;
+        if (Uri.TryCreate(path, UriKind.Absolute, out _)) return path;
 
         var normalized = path.Replace("\\", "/");
         if (!normalized.StartsWith('/'))
@@ -22,15 +19,12 @@ public static class FileUrlHelper
 
         if (string.IsNullOrWhiteSpace(baseUrl))
             return normalized;
-
         return $"{baseUrl.TrimEnd('/')}{normalized}";
     }
 
     private static string? BuildBaseUrl(HttpRequest? request)
     {
-        if (request == null)
-            return null;
-
+        if (request == null) return null;
         return $"{request.Scheme}://{request.Host}{request.PathBase}";
     }
 }

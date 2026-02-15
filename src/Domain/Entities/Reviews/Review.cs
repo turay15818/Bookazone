@@ -20,7 +20,7 @@ public class Review : UserBaseEntity
     [MaxLength(150)] public string? Title { get; set; }
     [MaxLength(2000)] public string? Body { get; set; }
     public bool IsVerified { get; set; } = true;
-    public ReviewStatus Status { get; set; } = ReviewStatus.Pending;
+    public ReviewStatus Status { get; set; } = ReviewStatus.Approved;
     [MaxLength(500)] public string? ModerationNotes { get; set; }
     [MaxLength(2000)] public string? Reply { get; set; }
     public DateTime? RepliedAtUtc { get; set; }

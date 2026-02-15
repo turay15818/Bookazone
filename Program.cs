@@ -88,6 +88,9 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<BookazoneDbContext>();
     var logger = services.GetRequiredService<ILoggerFactory>().CreateLogger("Seeder");
     await SubscriptionPlanSeeder.SeedAsync(context, logger);
+    var equipmentTenantId = Guid.Parse("e169d98e-fbfc-4690-a918-032f56213edb");
+    var equipmentUserId = Guid.Parse("4af3a23c-97be-43c4-b71a-882638680f2d");
+    await EquipmentSeeder.SeedAsync(context, logger, app.Environment.ContentRootPath, equipmentTenantId, equipmentUserId);
 }
 
 

@@ -6,10 +6,12 @@ using Bookazone.Application.DTOs.Reviews;
 using Bookazone.Application.Interfaces.Context;
 using Bookazone.Application.Interfaces.Repository.Booking;
 using Bookazone.Application.Interfaces.Repository.Events;
+using Bookazone.Application.Interfaces.Repository.Rentals;
 using Bookazone.Application.Interfaces.Repository.Reviews;
 using Bookazone.Application.Interfaces.Repository.Vehicles;
 using Bookazone.Application.Interfaces.Services.Reviews;
 using Bookazone.Domain.Entities.Events;
+using Bookazone.Domain.Entities.Rentals;
 using Bookazone.Domain.Entities.Reviews;
 using Bookazone.Domain.Entities.Vehicles;
 using Bookazone.Domain.Enums;
@@ -23,6 +25,7 @@ public class ReviewService(
     IBookingRepository bookingRepository,
     IEventOrderRepository eventOrderRepository,
     IVehicleOrderRepository vehicleOrderRepository,
+    IRentalOrderRepository rentalOrderRepository,
     IUserContext userContext,
     IHttpContextAccessor httpContextAccessor,
     ILogger<ReviewService> logger)
@@ -79,7 +82,7 @@ public class ReviewService(
                 Title = NormalizeText(request.Title, 150),
                 Body = NormalizeText(request.Body, 2000),
                 IsVerified = sourceResult.IsVerified,
-                Status = ReviewStatus.Pending,
+                Status = ReviewStatus.Approved,
                 Active = true,
                 Deleted = false
             };
@@ -250,7 +253,7 @@ public class ReviewService(
             var paged = await Paginate<VwReviewListItem>.CreateAsync(sorted, pageIndex, pageSize);
 
             var request = httpContextAccessor.HttpContext?.Request;
-            foreach (var item in paged.Data)
+            foreach (var item in sorted)
                 item.CustomerAvatarUrl = FileUrlHelper.BuildPublicUrl(request, item.CustomerAvatarUrl);
 
             return ApiResponse.Success(paged);
@@ -546,6 +549,8 @@ public class ReviewService(
                 return await ValidateEventOrderSourceAsync(request, reviewerId, cancellationToken);
             case ReviewSourceType.VehicleOrder:
                 return await ValidateVehicleOrderSourceAsync(request, reviewerId, cancellationToken);
+            case ReviewSourceType.RentalOrder:
+                return await ValidateRentalOrderSourceAsync(request, reviewerId, cancellationToken);
             default:
                 return SourceValidationResult.Fail("Unsupported review source.");
         }
@@ -624,6 +629,30 @@ public class ReviewService(
         return SourceValidationResult.Success(order.FkTenantId, IsVehicleOrderVerified(order));
     }
 
+    private async Task<SourceValidationResult> ValidateRentalOrderSourceAsync(
+        ReviewCreateRequest request,
+        Guid reviewerId,
+        CancellationToken cancellationToken)
+    {
+        var order = await rentalOrderRepository.Query()
+            .AsNoTracking()
+            .FirstOrDefaultAsync(o => o.Id == request.SourceId && o.Active && !o.Deleted, cancellationToken);
+
+        if (order == null)
+            return SourceValidationResult.Fail("Rental order not found.");
+
+        if (order.FkCustomerId != reviewerId)
+            return SourceValidationResult.Fail("Rental order does not belong to the current user.");
+
+        if (!IsRentalOrderReviewable(order))
+            return SourceValidationResult.Fail("Rental order is not completed yet.");
+
+        if (!IsRentalOrderTargetMatch(request, order))
+            return SourceValidationResult.Fail("Target does not match rental order.");
+
+        return SourceValidationResult.Success(order.FkTenantId, IsRentalOrderVerified(order));
+    }
+
     private static bool IsBookingTargetMatch(ReviewCreateRequest request, BookingEntity booking)
     {
         return request.TargetType switch
@@ -650,6 +679,16 @@ public class ReviewService(
         {
             ReviewTargetType.Tenant => request.TargetId == order.FkTenantId,
             ReviewTargetType.Vehicle => request.TargetId == order.FkVehicleId,
+            _ => false
+        };
+    }
+
+    private static bool IsRentalOrderTargetMatch(ReviewCreateRequest request, RentalOrder order)
+    {
+        return request.TargetType switch
+        {
+            ReviewTargetType.Tenant => request.TargetId == order.FkTenantId,
+            ReviewTargetType.Rental => request.TargetId == order.FkRentalId,
             _ => false
         };
     }
@@ -691,6 +730,20 @@ public class ReviewService(
 
     private static bool IsVehicleOrderVerified(VehicleOrder order)
         => order.Status == VehicleOrderStatus.Completed ||
+           (order.EndUtc.HasValue && order.EndUtc.Value <= DateTime.UtcNow);
+
+    private static bool IsRentalOrderReviewable(RentalOrder order)
+    {
+        if (order.Status == RentalOrderStatus.Completed)
+            return true;
+
+        return order.Status == RentalOrderStatus.Confirmed &&
+               order.EndUtc.HasValue &&
+               order.EndUtc.Value <= DateTime.UtcNow;
+    }
+
+    private static bool IsRentalOrderVerified(RentalOrder order)
+        => order.Status == RentalOrderStatus.Completed ||
            (order.EndUtc.HasValue && order.EndUtc.Value <= DateTime.UtcNow);
 
     private static IQueryable<VwReviewListItem> ApplySorting(

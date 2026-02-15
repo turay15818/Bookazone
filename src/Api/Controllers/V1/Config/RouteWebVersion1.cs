@@ -30,6 +30,13 @@ public static class RouteWebVersion1
             }
         }
 
+        public static class Tenants
+        {
+            private const string PrefixTenants = RouteWebVersion1.Public.Base + "/tenants";
+            public const string Base = PrefixTenants;
+            public const string Full = "{id}/full";
+        }
+
         public static class Events
         {
             private const string PrefixEvents = RouteWebVersion1.Public.Base + "/events";
@@ -46,6 +53,24 @@ public static class RouteWebVersion1
             public const string Base = PrefixVehicles;
             public const string All = "all";
             public const string Find = "{id}";
+        }
+
+        public static class Rentals
+        {
+            private const string PrefixRentals = RouteWebVersion1.Public.Base + "/rentals";
+            public const string Base = PrefixRentals;
+            public const string All = "all";
+            public const string Find = "{id}";
+            public const string Slots = "{id}/slots";
+        }
+
+        public static class Equipment
+        {
+            private const string PrefixEquipment = RouteWebVersion1.Public.Base + "/equipment";
+            public const string Base = PrefixEquipment;
+            public const string All = "all";
+            public const string Find = "{id}";
+            public const string Availability = "{id}/availability";
         }
 
         public static class Reviews
@@ -682,6 +707,62 @@ public static class Supplier
         public static class VehicleOrders
         {
             public const string Base = PrefixSecure + "/vehicles/order";
+            public const string Create = "create";
+            public const string Find = "find";
+            public const string Customer = "customer";
+            public const string Tenant = "tenant";
+            public const string Status = "status";
+            public const string Cancel = "cancel";
+        }
+
+        public static class Rentals
+        {
+            public const string Base = PrefixSecure + "/rentals";
+            public const string All = "all";
+            public const string Find = "find";
+            public const string Create = "create";
+            public const string Update = "update";
+            public const string Publish = "publish";
+            public const string Status = "status";
+            public const string Delete = "delete";
+            public const string PricingBulk = "{rentalId}/pricing/bulk";
+            public const string SpecsBulk = "{rentalId}/specs/bulk";
+            public const string PoliciesBulk = "{rentalId}/policies/bulk";
+            public const string MediaBulk = "{rentalId}/media/bulk";
+            public const string MediaUpload = "{rentalId}/media/upload";
+        }
+
+        public static class Equipment
+        {
+            public const string Base = PrefixSecure + "/equipment";
+            public const string All = "all";
+            public const string Find = "find";
+            public const string Create = "create";
+            public const string Update = "update";
+            public const string Publish = "publish";
+            public const string Status = "status";
+            public const string Delete = "delete";
+            public const string PricingBulk = "{equipmentId}/pricing/bulk";
+            public const string SpecsBulk = "{equipmentId}/specs/bulk";
+            public const string PoliciesBulk = "{equipmentId}/policies/bulk";
+            public const string MediaBulk = "{equipmentId}/media/bulk";
+            public const string MediaUpload = "{equipmentId}/media/upload";
+        }
+
+        public static class RentalOrders
+        {
+            public const string Base = PrefixSecure + "/rentals/order";
+            public const string Create = "create";
+            public const string Find = "find";
+            public const string Customer = "customer";
+            public const string Tenant = "tenant";
+            public const string Status = "status";
+            public const string Cancel = "cancel";
+        }
+
+        public static class EquipmentOrders
+        {
+            public const string Base = PrefixSecure + "/equipment/order";
             public const string Create = "create";
             public const string Find = "find";
             public const string Customer = "customer";

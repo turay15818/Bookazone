@@ -63,6 +63,22 @@ public static class SwaggerConfig
         },
         new SwaggerDocChild
         {
+            Slug = SwaggerDocName.Rentals.Slug,
+            Title = SwaggerDocName.Rentals.Title,
+            Version = SwaggerDocName.Rentals.Version,
+            Description = SwaggerDocName.Rentals.Description,
+            Name = SwaggerDocName.Rentals.Name
+        },
+        new SwaggerDocChild
+        {
+            Slug = SwaggerDocName.Equipment.Slug,
+            Title = SwaggerDocName.Equipment.Title,
+            Version = SwaggerDocName.Equipment.Version,
+            Description = SwaggerDocName.Equipment.Description,
+            Name = SwaggerDocName.Equipment.Name
+        },
+        new SwaggerDocChild
+        {
             Slug = SwaggerDocName.Reviews.Slug,
             Title = SwaggerDocName.Reviews.Title,
             Version = SwaggerDocName.Reviews.Version,
@@ -125,6 +141,24 @@ public static class SwaggerConfig
             public const string Version = "v1";
             public const string Description = "Vehicle rental and transport endpoints.";
             public const string Name = "Vehicles";
+        }
+
+        public static class Rentals
+        {
+            public const string Slug = "API Rentals v1";
+            public const string Title = "API Bookazone Rentals v1";
+            public const string Version = "v1";
+            public const string Description = "Rental listing and booking endpoints.";
+            public const string Name = "Rentals";
+        }
+
+        public static class Equipment
+        {
+            public const string Slug = "API Equipment v1";
+            public const string Title = "API Bookazone Equipment v1";
+            public const string Version = "v1";
+            public const string Description = "Equipment rental listing and booking endpoints.";
+            public const string Name = "Equipment";
         }
 
         public static class Reviews

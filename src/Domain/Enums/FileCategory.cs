@@ -7,5 +7,7 @@ public enum FileCategory
     Contract,
     Invoice,
     VehicleMedia,
+    RentalMedia,
+    EquipmentMedia,
     Other
 }
